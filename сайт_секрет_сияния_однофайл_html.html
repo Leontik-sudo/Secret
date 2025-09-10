@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Секрет сияния — салон красоты</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --beige:#f6efe6;
+      --beige-deep:#eadfcf;
+      --gold:#b88634;
+      --accent:#7a664f;
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial; background:linear-gradient(180deg,var(--beige) 0%, #fff 100%); color:var(--accent);}
+    .container{max-width:var(--maxw);margin:40px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{font-family:'Playfair Display',serif;font-size:28px;color:var(--accent);letter-spacing:1px}
+    nav a{margin-left:18px;text-decoration:none;color:var(--accent);font-weight:600}
+    .hero{margin-top:28px;background:linear-gradient(180deg,var(--glass), rgba(255,255,255,0.35));padding:36px;border-radius:16px;position:relative;border:1px solid rgba(185,150,90,0.12)}
+    .hero::after{content:'';position:absolute;inset:0;border-radius:16px;pointer-events:none;border-top:2px solid rgba(184,134,52,0.12);}
+    .hero-grid{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    .hero h1{font-family:'Playfair Display';font-size:42px;margin:0 0 8px}
+    .hero p{margin:0 0 18px;color:#5b4f42}
+    .cta{display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:10px;border:1px solid var(--gold);background:transparent;font-weight:600;cursor:pointer}
+    .btn-primary{background:linear-gradient(180deg,var(--gold), #a86f1a);color:white;box-shadow:0 6px 20px rgba(168,111,26,0.18)}
+    .card{background:#fff;border-radius:12px;padding:18px;border:1px solid rgba(160,120,60,0.06)}
+    section{margin-top:28px}
+    h2{font-family:'Playfair Display';font-size:22px;margin:0 0 12px}
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .service{padding:16px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbf6f0);box-shadow:0 6px 14px rgba(120,90,40,0.06);border-left:4px solid rgba(184,134,52,0.12)}
+    .price{font-weight:700;color:var(--accent)}
+    .contacts{display:flex;flex-wrap:wrap;gap:18px}
+    .contact-item{min-width:220px}
+    .reviews{display:flex;flex-direction:column;gap:12px}
+    .review{background:linear-gradient(180deg,#fff,#fcfbf9);padding:14px;border-radius:10px;border-left:3px solid var(--gold)}
+    footer{margin-top:40px;padding:18px;text-align:center;color:#6b5b4a}
+    .gold-line{height:4px;background:linear-gradient(90deg,transparent,rgba(184,134,52,0.9),transparent);border-radius:4px;margin:18px 0}
+    .telegram{display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:8px 12px;border-radius:10px;border:1px solid rgba(184,134,52,0.12);background:transparent}
+    /* responsive */
+    @media (max-width:880px){.hero-grid{grid-template-columns:1fr}.container{margin:20px;padding:16px}}
+    /* booking modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;padding:20px;visibility:hidden;opacity:0;transition:all .2s}
+    .modal.show{visibility:visible;opacity:1}
+    .modal .modal-card{background:var(--beige);padding:20px;border-radius:12px;max-width:520px;width:100%;border:1px solid rgba(168,111,26,0.12)}
+    label{display:block;font-size:14px;margin-bottom:6px}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(120,100,80,0.08);margin-bottom:12px}
+    .small{font-size:13px;color:#7a6a5a}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">Секрет сияния</div>
+      <nav class="small">
+        <a href="#services">Услуги</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </header>
+
+    <div class="hero card">
+      <div class="hero-grid">
+        <div>
+          <h1>Элегантная красота. Ваша уверенность.</h1>
+          <p>Салон «Секрет сияния» — авторские процедуры, премиальные бренды и атмосфера уюта. Подарите себе блеск и заботу.</p>
+          <div class="cta">
+            <button class="btn btn-primary" id="openBooking">Записаться</button>
+            <a class="btn" href="#contacts">Контакты</a>
+            <a class="telegram" href="https://t.me/sekret_siyaniya" target="_blank" rel="noreferrer">Telegram<br> @sekret_siyaniya</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Информация</h3>
+          <p class="small">График работы: 10:00 — 20:00 (понедельник — выходной)</p>
+          <p class="small">Телефон: <a href="tel:+791110295319">+7 911 102-95-19</a></p>
+          <div class="gold-line"></div>
+          <p class="small">Адрес: г. Ростов-на-Дону, (укажите точный адрес)</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="services">
+      <h2>Услуги</h2>
+
+      <h3>Стрижки</h3>
+      <div class="services">
+        <div class="service">
+          <h4>Мужская стрижка</h4>
+          <p class="small">Классика и современные техники.</p>
+          <div class="price">от 1 500 ₽</div>
+        </div>
+        <div class="service">
+          <h4>Женская стрижка</h4>
+          <p class="small">Индивидуальный подбор формы, укладка.</p>
+          <div class="price">от 2 500 ₽</div>
+        </div>
+        <div class="service">
+          <h4>Детская стрижка</h4>
+          <p class="small">Бережно и аккуратно для детей.</p>
+          <div class="price">от 1 000 ₽</div>
+        </div>
+      </div>
+
+      <h3>Окрашивание волос</h3>
+      <div class="services">
+        <div class="service">
+          <h4>Окрашивание</h4>
+          <p class="small">Индивидуальный подбор оттенка, уход.</p>
+          <div class="price">от 4 500 ₽</div>
+        </div>
+      </div>
+
+      <h3>Кератин и ботокс волос</h3>
+      <div class="services">
+        <div class="service">
+          <h4>Кератиновое выпрямление</h4>
+          <p class="small">Блеск, гладкость и защита волос.</p>
+          <div class="price">от 5 000 ₽</div>
+        </div>
+        <div class="service">
+          <h4>Ботокс для волос</h4>
+          <p class="small">Восстановление структуры и упругости.</p>
+          <div class="price">от 4 000 ₽</div>
+        </div>
+      </div>
+
+      <h3>Ресницы и брови</h3>
+      <div class="services">
+        <div class="service">
+          <h4>Ламинирование ресниц</h4>
+          <p class="small">Естественный изгиб и уход.</p>
+          <div class="price">от 2 000 ₽</div>
+        </div>
+        <div class="service">
+          <h4>Окрашивание ресниц и бровей</h4>
+          <p class="small">Стойкий цвет и выразительность.</p>
+          <div class="price">от 1 200 ₽</div>
+        </div>
+        <div class="service">
+          <h4>Оформление и коррекция бровей</h4>
+          <p class="small">Форма и стиль под ваш образ.</p>
+          <div class="price">от 1 000 ₽</div>
+        </div>
+      </div>
+
+      <h3>Маникюр и педикюр</h3>
+      <div class="services">
+        <div class="service">
+          <h4>Маникюр премиум</h4>
+          <p class="small">Комбинированный, гель-лак, дизайн.</p>
+          <div class="price">от 1 800 ₽</div>
+        </div>
+        <div class="service">
+          <h4>Педикюр</h4>
+          <p class="small">Уход за стопами и ногтями, покрытие гель-лак.</p>
+          <div class="price">от 2 500 ₽</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <h2>Отзывы клиентов</h2>
+      <div class="reviews">
+        <div class="review">
+          <strong>Екатерина</strong>
+          <p class="small">«Замечательный салон — профессионалы, уют и отличный результат. Рекомендую!»</p>
+        </div>
+        <div class="review">
+          <strong>Марина</strong>
+          <p class="small">«Делала окрашивание — все сделали аккуратно, цвет держится долго.»</p>
+        </div>
+        <div class="review">
+          <strong>Ольга</strong>
+          <p class="small">«Маникюр держится 3 недели, мастер продумал дизайн идеально.»</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <div class="contacts">
+        <div class="card contact-item">
+          <h4>Запись</h4>
+          <p class="small">Позвоните или оставьте заявку — мы свяжемся для подтверждения.</p>
+          <p><a href="tel:+791110295319">+7 911 102-95-19</a></p>
+          <p class="small">Email: <a href="mailto:info@sekret-siyaniya.ru">info@sekret-siyaniya.ru</a></p>
+        </div>
+        <div class="card contact-item">
+          <h4>Соцсети и Telegram</h4>
+          <p class="small">Подписывайтесь на акции и записи в Telegram:</p>
+          <p><a href="https://t.me/sekret_siyaniya" target="_blank" rel="noreferrer">https://t.me/sekret_siyaniya</a></p>
+        </div>
+        <div class="card contact-item">
+          <h4>Адрес</h4>
+          <p class="small">Ростов-на-Дону — укажите точный адрес для публикации карты.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © «Секрет сияния» — все права защищены. <br>
+      <small class="small">Сайт подготовлен в элегантном бежево-золотом стиле. Для правок — обратитесь к разработчику.</small>
+    </footer>
+  </div>
+
+  <!-- Booking modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <h3 style="margin-top:0">Запись на услугу</h3>
+      <form id="bookingForm">
+        <label>Ваше имя<input type="text" name="name" required></label>
+        <label>Телефон<input type="tel" name="phone" required></label>
+        <label>Услуга
+          <select name="service">
+            <option>Мужская стрижка</option>
+            <option>Женская стрижка</option>
+            <option>Детская стрижка</option>
+            <option>Окрашивание</option>
+            <option>Кератиновое выпрямление</option>
+            <option>Ботокс для волос</option>
+            <option>Ламинирование ресниц</option>
+            <option>Окрашивание ресниц и бровей</option>
+            <option>Оформление и коррекция бровей</option>
+            <option>Маникюр премиум</option>
+            <option>Педикюр</option>
+          </select>
+        </label>
+        <label>Желаемая дата и время<input type="datetime-local" name="datetime"></label>
+        <label>Комментарий<textarea name="note" rows="3"></textarea></label>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button type="button" class="btn" id="closeModal">Отмена</button>
+          <button class="btn btn-primary" type="submit">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    document.getElementById('openBooking').addEventListener('click',()=>{modal.classList.add('show');modal.setAttribute('aria-hidden','false')});
+    document.getElementById('closeModal').addEventListener('click',()=>{modal.classList.remove('show');modal.setAttribute('aria-hidden','true')});
+    document.getElementById('bookingForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const data = new FormData(e.target);
+      alert('Заявка принята. Мы перезвоним для подтверждения.\n' + data.get('name') + ', ' + data.get('phone'));
+      modal.classList.remove('show');
+    });
+  </script>
+</body>
+</html>
